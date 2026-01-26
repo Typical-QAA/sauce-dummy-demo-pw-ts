@@ -1,0 +1,29 @@
+{
+  "name": "saucedemo-dummyjson-demo-pw-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:api": "npx playwright test --project api",
+    "test:web": "npx playwright test --project web-chrome",
+    "typecheck": "npx tsc --noEmit",
+    "ci:test": "npx playwright test --config ./environment/playwright-configs/bace-ci.config.ts",
+    "ci:test:api": "npx playwright test --project api --config ./environment/playwright-configs/bace-ci.config.ts",
+    "ci:test:web": "npx playwright test --project web-chrome --config ./environment/playwright-configs/bace-ci.config.ts"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Typical-QAA",
+    "url": "https://github.com/Typical-QAA"
+  },
+  "license": "MIT",
+  "description": "Saucedemo and dummyjson test automation demo framework using Playwright + TypeScript",
+  "devDependencies": {
+    "@faker-js/faker": "^10.2.0",
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^25.0.10",
+    "allure-playwright": "^3.4.5",
+    "dotenv": "^17.2.3",
+    "typescript": "^5.9.3"
+  }
+}
