@@ -3,4 +3,4 @@ export const TAGS = {
   TYPE: { API: '@api', WEB: '@web' },
   SPEED: { SLOW: '@slow', FAST: '@fast' },
   STATUS: { EXPECTED_TO_PASS: '@expected_to_pass', EXPECTED_TO_FAIL: '@expected_to_fail' }
-} as const
+} as const;

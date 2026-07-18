@@ -1,29 +1,33 @@
-import type { MinimalProduct } from '../types/api'
-import { ApiBase } from './base'
+import type { MinimalProduct } from '../types/api';
+import { ApiBase } from './base';
 
-type RequestParams = { delay?: number | string }
-type GetProductsParams = RequestParams & { limit?: number; skip?: number; select?: string }
+type GetProductsOptions = { limit?: number; skip?: number; select?: string; delay?: number | string };
+
+const productUrls = {
+  list: ({ limit, skip, select, delay }: GetProductsOptions = {}) => {
+    const query = new URLSearchParams();
+    if (limit !== undefined) query.set('limit', String(limit));
+    if (skip !== undefined) query.set('skip', String(skip));
+    if (select !== undefined) query.set('select', select);
+    if (delay !== undefined) query.set('delay', String(delay));
+    const qs = query.toString();
+    return `/products${qs ? `?${qs}` : ''}`;
+  },
+  byId: (id: number) => `/products/${id}`,
+  add: () => '/products/add'
+} as const;
 
 export class ApiProducts extends ApiBase {
-  private buildQueryParams(params: Record<string, any>) {
-    const filtered = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== undefined))
-    return Object.keys(filtered).length ? filtered : undefined
+  getProducts(options: GetProductsOptions = {}) {
+    return this.get(productUrls.list(options));
   }
-
-  async getProducts(queryParams: GetProductsParams = {}) {
-    const params = this.buildQueryParams(queryParams)
-    return params ? this.request.get('/products', { params }) : this.request.get('/products')
+  getProduct(id: number) {
+    return this.get(productUrls.byId(id));
   }
-
-  async getProduct(id: number) {
-    return this.request.get(`/products/${id}`)
+  patchProduct(id: number, data: MinimalProduct) {
+    return this.patch(productUrls.byId(id), data);
   }
-
-  async patchProduct(id: number, data: MinimalProduct) {
-    return this.request.patch(`/products/${id}`, { data })
-  }
-
-  async createProduct(data: MinimalProduct) {
-    return this.request.post('/products/add', { data: data, headers: { 'content-type': 'application/json' } })
+  createProduct(data: MinimalProduct) {
+    return this.post(productUrls.add(), data);
   }
 }

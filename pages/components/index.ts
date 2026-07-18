@@ -1,3 +1,3 @@
-export * from './header'
-export * from './item-card'
-export * from './items-list'
+export * from './header';
+export * from './item-card';
+export * from './items-list';

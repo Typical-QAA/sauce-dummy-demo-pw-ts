@@ -1,9 +1,8 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test'
-import dotenv from 'dotenv'
-import path from 'path'
+import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
 
-dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true })
+dotenv.config({ path: new URL('.env', import.meta.url), quiet: true });
 
 export default defineConfig({
   testDir: './tests',
@@ -28,4 +27,4 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], channel: 'chromium', baseURL: process.env.PW_BASE_WEB_URL || 'https://www.saucedemo.com' }
     }
   ]
-})
+});

@@ -1,1 +1,1 @@
-export * from './shipping-data'
+export * from './shipping-data';

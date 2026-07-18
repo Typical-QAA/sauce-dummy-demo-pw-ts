@@ -1,6 +1,6 @@
-import type { UserDataCredentials } from '../../../types/web'
+import type { UserDataCredentials } from '../../../types/web';
 
-const DEFAULT_PASSWORD = 'secret_sauce'
+const DEFAULT_PASSWORD = 'secret_sauce';
 
 export const USERS = {
   STANDARD: { username: 'standard_user', password: DEFAULT_PASSWORD },
@@ -9,4 +9,4 @@ export const USERS = {
   PERF_GLITCH: { username: 'performance_glitch_user', password: DEFAULT_PASSWORD },
   ERROR: { username: 'error_user', password: DEFAULT_PASSWORD },
   VISUAL: { username: 'visual_user', password: DEFAULT_PASSWORD }
-} satisfies Record<string, UserDataCredentials>
+} satisfies Record<string, UserDataCredentials>;
